@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Repositories\CurrencyRepository;
+use App\Repositories\PriceRepository;
+use App\Repositories\Interfaces\CurrencyRepositoryInterface;
 use App\Repositories\Interfaces\PriceRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\PriceRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -28,6 +30,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             PriceRepositoryInterface::class,
             PriceRepository::class
+        );
+        $this->app->bind(
+            CurrencyRepositoryInterface::class,
+            CurrencyRepository::class
         );
     }
 }
