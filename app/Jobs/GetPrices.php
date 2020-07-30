@@ -36,9 +36,9 @@ class GetPrices implements ShouldQueue
     {
         Http::fake([
             'http://peiman.local/prices' => Http::response([
-                ['abbr' => 'IRR', 'price' => rand(1, 250)],
-                ['abbr' => 'USD', 'price' => rand(1, 250)],
-                ['abbr' => 'EUR', 'price' => rand(1, 250)],
+                ['abbr' => 'IRR', 'price' => 1],
+                ['abbr' => 'USD', 'price' => rand(1, 25)],
+                ['abbr' => 'EUR', 'price' => rand(1, 25)],
             ], 200)
         ]);
 
@@ -46,6 +46,7 @@ class GetPrices implements ShouldQueue
             $response = Http::get('http://peiman.local/prices')->throw();
             $this->priceRepository->createMultiple($response->json());
         } catch (Exception $e) {
+            // TODO log the error
             // do nothing here.
         }
     }
