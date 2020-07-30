@@ -8,6 +8,7 @@
     </template>
     <template v-else>
       <form @submit.prevent="sendExchangeRequest" :class="['form', loading ? 'loading' : '']">
+        <div class="last-date-label">Last Update: {{lastDate}}</div>
         <div class="select-wrapper">
           <div>
             <select v-model="formData.fromCurrency" name="from" id="from">
@@ -94,6 +95,13 @@ export default {
       }
       return this.currencyOptions;
     },
+    lastDate() {
+      if (this.lastPrices && this.lastPrices.length === 0) {
+        return "";
+      }
+      const tmpDate = new Date(this.lastPrices[0].created_at);
+      return tmpDate;
+    },
   },
   mounted: async function () {
     await this.getLastPrices();
@@ -127,9 +135,11 @@ export default {
               email: this.formData.email,
             }
           );
-          alert("operation was successfull");
+          alert(
+            `operation was successfull, Your Code: ${result.data.data.order_id}`
+          );
+          this.resetData();
         } catch (e) {
-          console.log("@@", e);
           alert(e.message);
         } finally {
           this.loading = false;
@@ -149,6 +159,15 @@ export default {
     },
     getPriceByAbbr(abbr) {
       return this.lastPrices.find((price) => price.currency.abbr === abbr);
+    },
+    restData() {
+      this.formData = {
+        fromCurrency: "",
+        toCurrency: "",
+        fromValue: "",
+        toValue: "",
+        email: "",
+      };
     },
   },
   watch: {
@@ -218,6 +237,10 @@ export default {
       opacity: 1;
       visibility: visible;
     }
+  }
+
+  .last-date-label {
+    padding: 0 16px;
   }
 
   .select-wrapper {

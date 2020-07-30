@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Api\V1;
 use App\Models\Order;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreExchangeOrder;
-use App\Repositories\Interfaces\PriceRepositoryInterface;
+use App\Repositories\Interfaces\OrderRepositoryInterface;
 
 class OrderController extends Controller
 {
-    private $priceRepository = null;
+    private $orderRepository = null;
 
-    public function __construct(PriceRepositoryInterface $priceRepository)
+    public function __construct(OrderRepositoryInterface $orderRepository)
     {
-        $this->priceRepository = $priceRepository;
+        $this->orderRepository = $orderRepository;
     }
 
     public function get($id)
@@ -29,17 +29,7 @@ class OrderController extends Controller
 
     public function create(StoreExchangeOrder $request)
     {
-        $validated = $request->validated();
-
-        $from = $this->priceRepository->get($validated['from']);
-        $to = $this->priceRepository->get($validated['to']);
-
-        $order = Order::create([
-            'user_email' => $validated['email'],
-            'from_price' => $from->id,
-            'to_price' => $to->id,
-            'exchange_total_value' => $validated['amount']
-        ]);
+        $order = $this->orderRepository->store($request);
 
         return $this->echoSuccessJson(['order_id' => $order->id]);
     }

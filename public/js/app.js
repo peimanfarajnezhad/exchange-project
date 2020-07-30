@@ -2158,6 +2158,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2198,6 +2199,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return this.currencyOptions;
+    },
+    lastDate: function lastDate() {
+      if (this.lastPrices && this.lastPrices.length === 0) {
+        return "";
+      }
+
+      var tmpDate = new Date(this.lastPrices[0].created_at);
+      return tmpDate;
     }
   },
   mounted: function () {
@@ -2292,14 +2301,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 6:
                 result = _context3.sent;
-                alert("operation was successfull");
+                alert("operation was successfull, Your Code: ".concat(result.data.data.order_id));
+                this.resetData();
                 _context3.next = 14;
                 break;
 
-              case 10:
-                _context3.prev = 10;
+              case 11:
+                _context3.prev = 11;
                 _context3.t0 = _context3["catch"](1);
-                console.log("@@", _context3.t0);
                 alert(_context3.t0.message);
 
               case 14:
@@ -2319,7 +2328,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context3.stop();
             }
           }
-        }, _callee3, this, [[1, 10, 14, 17]]);
+        }, _callee3, this, [[1, 11, 14, 17]]);
       }));
 
       function sendExchangeRequest() {
@@ -2335,6 +2344,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.lastPrices.find(function (price) {
         return price.currency.abbr === abbr;
       });
+    },
+    restData: function restData() {
+      this.formData = {
+        fromCurrency: "",
+        toCurrency: "",
+        fromValue: "",
+        toValue: "",
+        email: ""
+      };
     }
   },
   watch: (_watch = {}, _defineProperty(_watch, "formData.fromCurrency", function formDataFromCurrency() {
@@ -2386,7 +2404,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".form[data-v-d92ec41c] {\n  padding: 24px 0;\n  overflow: hidden;\n  position: relative;\n  border-radius: 8px;\n  box-sizing: border-box;\n}\n.form[data-v-d92ec41c]::before, .form[data-v-d92ec41c]::after {\n  opacity: 0;\n  visibility: hidden;\n  transition: all 300ms ease-in-out;\n}\n.form[data-v-d92ec41c]::before {\n  top: 0;\n  left: 0;\n  z-index: 1;\n  content: \"\";\n  width: 100%;\n  height: 100%;\n  color: white;\n  text-align: center;\n  position: absolute;\n  background-color: rgba(0, 0, 0, 0.6);\n}\n.form[data-v-d92ec41c]::after {\n  top: 50%;\n  left: 50%;\n  z-index: 2;\n  color: #ffffff;\n  font-weight: bold;\n  font-size: 1.4rem;\n  position: absolute;\n  content: \"Loading...\";\n  transform: translate(-50%, -50%);\n}\n.form.loading[data-v-d92ec41c]::before, .form.loading[data-v-d92ec41c]::after {\n  opacity: 1;\n  visibility: visible;\n}\n.form .select-wrapper[data-v-d92ec41c] {\n  display: flex;\n}\n.form .select-wrapper div[data-v-d92ec41c] {\n  padding: 6px 12px;\n  flex-grow: 1;\n}\n.form .select-wrapper div select[data-v-d92ec41c] {\n  width: 100%;\n}\n.form .inputs-wrapper[data-v-d92ec41c] {\n  display: flex;\n}\n.form .inputs-wrapper div[data-v-d92ec41c] {\n  padding: 6px 12px;\n  flex-grow: 1;\n}\n.form .inputs-wrapper div input[data-v-d92ec41c] {\n  box-sizing: border-box;\n  display: inline-block;\n  width: 100%;\n}\n.form .email-wrapper[data-v-d92ec41c] {\n  padding: 8px 12px;\n}\n.form .email-wrapper input[data-v-d92ec41c] {\n  width: 100%;\n  box-sizing: border-box;\n}\n.form .actions[data-v-d92ec41c] {\n  padding: 8px 0;\n  text-align: center;\n}", ""]);
+exports.push([module.i, ".form[data-v-d92ec41c] {\n  padding: 24px 0;\n  overflow: hidden;\n  position: relative;\n  border-radius: 8px;\n  box-sizing: border-box;\n}\n.form[data-v-d92ec41c]::before, .form[data-v-d92ec41c]::after {\n  opacity: 0;\n  visibility: hidden;\n  transition: all 300ms ease-in-out;\n}\n.form[data-v-d92ec41c]::before {\n  top: 0;\n  left: 0;\n  z-index: 1;\n  content: \"\";\n  width: 100%;\n  height: 100%;\n  color: white;\n  text-align: center;\n  position: absolute;\n  background-color: rgba(0, 0, 0, 0.6);\n}\n.form[data-v-d92ec41c]::after {\n  top: 50%;\n  left: 50%;\n  z-index: 2;\n  color: #ffffff;\n  font-weight: bold;\n  font-size: 1.4rem;\n  position: absolute;\n  content: \"Loading...\";\n  transform: translate(-50%, -50%);\n}\n.form.loading[data-v-d92ec41c]::before, .form.loading[data-v-d92ec41c]::after {\n  opacity: 1;\n  visibility: visible;\n}\n.form .last-date-label[data-v-d92ec41c] {\n  padding: 0 16px;\n}\n.form .select-wrapper[data-v-d92ec41c] {\n  display: flex;\n}\n.form .select-wrapper div[data-v-d92ec41c] {\n  padding: 6px 12px;\n  flex-grow: 1;\n}\n.form .select-wrapper div select[data-v-d92ec41c] {\n  width: 100%;\n}\n.form .inputs-wrapper[data-v-d92ec41c] {\n  display: flex;\n}\n.form .inputs-wrapper div[data-v-d92ec41c] {\n  padding: 6px 12px;\n  flex-grow: 1;\n}\n.form .inputs-wrapper div input[data-v-d92ec41c] {\n  box-sizing: border-box;\n  display: inline-block;\n  width: 100%;\n}\n.form .email-wrapper[data-v-d92ec41c] {\n  padding: 8px 12px;\n}\n.form .email-wrapper input[data-v-d92ec41c] {\n  width: 100%;\n  box-sizing: border-box;\n}\n.form .actions[data-v-d92ec41c] {\n  padding: 8px 0;\n  text-align: center;\n}", ""]);
 
 // exports
 
@@ -4381,6 +4399,10 @@ var render = function() {
                 }
               },
               [
+                _c("div", { staticClass: "last-date-label" }, [
+                  _vm._v("Last Update: " + _vm._s(_vm.lastDate))
+                ]),
+                _vm._v(" "),
                 _c("div", { staticClass: "select-wrapper" }, [
                   _c("div", [
                     _c(
