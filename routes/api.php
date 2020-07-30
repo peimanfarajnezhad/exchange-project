@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,5 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::namespace('Api\V1')->group(function() {
-    Route::get('prices', 'PriceController@list');
+    Route::prefix('v1')->group(function() {
+
+        Route::prefix('prices')->group(function() {
+            Route::get('', 'PriceController@list');
+        });
+
+        Route::prefix('orders')->group(function() {
+            Route::get('{id}', 'OrderController@get');
+            Route::post('', 'OrderController@create');
+        });
+
+    });
 });
