@@ -9,11 +9,21 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_ExchangeForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/ExchangeForm */ "./resources/js/components/ExchangeForm.vue");
 //
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    ExchangeForm: _components_ExchangeForm__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
+});
 
 /***/ }),
 
@@ -32,7 +42,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("Exchange")])
+  return _c(
+    "div",
+    { staticClass: "exchange-page" },
+    [_c("h1", [_vm._v("Exchange")]), _vm._v(" "), _c("exchange-form")],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -1,7 +1,15 @@
 <template>
-  <h1>Exchange</h1>
+  <div class="exchange-page">
+    <h1>Exchange</h1>
+
+    <exchange-form />
+  </div>
 </template>
 
 <script>
-export default {};
+import ExchangeForm from "../components/ExchangeForm";
+
+export default {
+  components: { ExchangeForm },
+};
 </script>

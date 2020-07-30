@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Api\V1;
 use App\Models\Order;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreExchangeOrder;
-use App\Repositories\Interfaces\CurrencyRepositoryInterface;
+use App\Repositories\Interfaces\PriceRepositoryInterface;
 
 class OrderController extends Controller
 {
-    private $currencyRepository = null;
+    private $priceRepository = null;
 
-    public function __construct(CurrencyRepositoryInterface $currencyRepository)
+    public function __construct(PriceRepositoryInterface $priceRepository)
     {
-        $this->currencyRepository = $currencyRepository;
+        $this->priceRepository = $priceRepository;
     }
 
     public function get($id)
@@ -31,8 +31,8 @@ class OrderController extends Controller
     {
         $validated = $request->validated();
 
-        $from = $this->currencyRepository->getByAbbr($validated['from']);
-        $to = $this->currencyRepository->getByAbbr($validated['to']);
+        $from = $this->priceRepository->get($validated['from']);
+        $to = $this->priceRepository->get($validated['to']);
 
         $order = Order::create([
             'user_email' => $validated['email'],

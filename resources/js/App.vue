@@ -17,8 +17,13 @@
     </header>
 
     <main>
-        <router-view />
+      <router-view />
     </main>
+
+    <footer>
+      author:
+      <span>Peiman Farajnezhad</span>
+    </footer>
   </div>
 </template>
 
@@ -34,6 +39,8 @@ export default {
 
 <style lang="scss" scoped>
 .app-container {
+  position: relative;
+
   header {
     height: 70px;
     display: flex;
@@ -86,6 +93,16 @@ export default {
         }
       }
     }
+  }
+
+  main {
+      padding: 24px;
+  }
+
+  footer {
+      padding: 8px 16px;
+      position: fixed;
+      bottom: 0;
   }
 }
 </style>

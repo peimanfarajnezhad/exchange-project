@@ -16,6 +16,11 @@ class PriceController extends Controller
 
     public function list()
     {
-        return response()->json($this->priceRepository->all());
+        return $this->echoSuccessJson($this->priceRepository->all());
+    }
+
+    public function last()
+    {
+        return $this->echoSuccessJson($this->priceRepository->getLast());
     }
 }

@@ -25,8 +25,8 @@ class StoreExchangeOrder extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'from' => 'required|alpha|exists:currencies,abbr',
-            'to' => 'required|alpha|different:from|exists:currencies,abbr',
+            'from' => 'required|numeric|exists:prices,id',
+            'to' => 'required|numeric|different:from|exists:prices,id',
             'amount' => 'required|numeric'
         ];
     }

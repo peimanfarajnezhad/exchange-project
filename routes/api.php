@@ -18,6 +18,7 @@ Route::namespace('Api\V1')->group(function() {
 
         Route::prefix('prices')->group(function() {
             Route::get('', 'PriceController@list');
+            Route::get('last', 'PriceController@last');
         });
 
         Route::prefix('orders')->group(function() {
